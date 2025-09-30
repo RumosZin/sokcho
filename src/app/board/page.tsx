@@ -1,6 +1,7 @@
 // src/app/board/page.tsx
 'use client';
 import Link from 'next/link';
+import Button from '@/components/Button';
 import { useState } from 'react';
 
 export default function Board() {
@@ -33,18 +34,12 @@ export default function Board() {
       <div className="max-w-4xl mx-auto">
         {/* 헤더 */}
         <div className="flex justify-between items-center mb-8">
-          <Link 
-            href="/" 
-            className="bg-white hover:bg-blue-50 text-gray-800 font-bold py-2 px-4 rounded-lg shadow-lg border border-gray-200 transition-colors duration-200"
-          >
-            홈으로 🏠
-          </Link>
-          <Link 
-            href="/board/write" 
-            className="bg-white hover:bg-blue-50 text-gray-800 font-bold py-2 px-4 rounded-lg shadow-lg border border-gray-200 transition-colors duration-200"
-          >
-            글쓰기 ✍🏼
-          </Link>
+		<Button href="/">
+			홈으로 🏠
+		</Button>
+		<Button href="/board/write">
+			글쓰기 ✍🏼
+		</Button>
         </div>
 
         {/* 게시글 목록 */}
