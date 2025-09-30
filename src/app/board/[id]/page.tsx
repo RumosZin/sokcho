@@ -1,5 +1,6 @@
 // src/app/board/[id]/page.tsx
 'use client';
+import Button from '@/components/Button';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
@@ -44,18 +45,12 @@ export default function PostDetail() {
       <div className="max-w-4xl mx-auto">
         {/* 헤더 */}
         <div className="flex justify-between items-center mb-8">
-          <Link 
-            href="/board" 
-            className="bg-white hover:bg-blue-50 text-gray-800 font-bold py-2 px-4 rounded-lg shadow-lg border border-gray-200 transition-colors duration-200"
-          >
-            ← 목록으로
-          </Link>
-          <Link 
-            href="/" 
-            className="bg-white hover:bg-blue-50 text-gray-800 font-bold py-2 px-4 rounded-lg shadow-lg border border-gray-200 transition-colors duration-200"
-          >
-            홈으로
-          </Link>
+            <Button href="/">
+              홈으로 🏠
+            </Button>
+            <Button href="/board">
+              목록으로 ↩️
+            </Button>
         </div>
 
         {/* 게시글 내용 */}
@@ -66,18 +61,30 @@ export default function PostDetail() {
           </h1>
           
           {/* 게시글 정보 */}
-          <div className="flex items-center gap-4 text-gray-600 mb-6 pb-6 border-b border-gray-200">
-            <span>{post.author}</span>
-            <span>{post.date}</span>
+          <div className="flex items-center justify-between mb-6 pb-6 border-b border-gray-200">
+            <div className="flex items-center gap-4 text-gray-600">
+              <span>{post.author}</span>
+              <span>{post.date}</span>
+            </div>
           </div>
 
           {/* 게시글 본문 */}
-          <div className="text-gray-800 leading-relaxed">
+          <div className="text-gray-800 leading-relaxed mb-6">
             {post.content.split('\n').map((line, index) => (
               <p key={index} className="mb-4">
                 {line}
               </p>
             ))}
+          </div>
+
+          {/* 수정/삭제 버튼 */}
+          <div className="flex justify-end gap-2 pt-6 border-t border-gray-200">
+            <button className="bg-yellow-50 hover:bg-yellow-100 text-yellow-800 font-bold py-2 px-4 rounded-lg shadow border border-yellow-50 transition-colors duration-200">
+              수정 ✏️
+            </button>
+            <button className="bg-red-50 hover:bg-red-100 text-red-800 font-bold py-2 px-4 rounded-lg shadow border border-red-50 transition-colors duration-200">
+              삭제 🗑️
+            </button>
           </div>
         </div>
       </div>
