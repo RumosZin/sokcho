@@ -1,12 +1,19 @@
 // src/app/board/[id]/page.tsx
 'use client';
 import Button from '@/components/Button';
+import DeleteConfirmModal from '@/components/DeleteConfirmModal';
+import { useToast } from '@/contexts/ToastContext'; // 전역 토스트 import
+import { getButtonClasses } from '@/constants/colors'; // 추가
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function PostDetail() {
   const params = useParams();
+  const router = useRouter();
   const postId = params.id;
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const { showToast } = useToast(); 
 
   // 임시 게시글 데이터 (실제로는 API에서 가져와야 함)
   const posts = [
@@ -16,11 +23,26 @@ export default function PostDetail() {
     { id: 4, title: '네 번째 게시글입니다', content: '네 번째 게시글의 내용입니다.', date: '2024-01-12', author: '작성자4' },
     { id: 5, title: '다섯 번째 게시글입니다', content: '다섯 번째 게시글의 내용입니다.', date: '2024-01-11', author: '작성자5' },
     { id: 6, title: '여섯 번째 게시글입니다', content: '여섯 번째 게시글의 내용입니다.', date: '2024-01-10', author: '작성자6' },
-    { id: 7, title: '일곱 번째 게시글입니다', content: '일곱 번째 게시글의 내용입니다.', date: '2024-01-09', author: '작성자7' },
+    { id: 7, title: '7번이지롱에베ㅔㅔㅔㅔㅔ~~~~~~~', content: '일곱 번째 게시글의 내용입니다.', date: '2024-01-09', author: '작성자7' },
   ];
 
   // 현재 게시글 찾기
   const post = posts.find(p => p.id === parseInt(postId as string));
+
+  // 삭제 처리 함수
+  const handleDelete = () => {
+    // 여기서 실제로는 API로 삭제 요청을 보내야 합니다
+    console.log('게시글 삭제:', postId);
+    
+    // 삭제 모달 닫기
+    setIsDeleteModalOpen(false);
+    
+    // 즉시 페이지 이동
+    router.push('/board');
+    
+    // 전역 토스트 표시 (페이지 이동 후에도 보임)
+    showToast('게시글을 삭제했습니다.', 'delete');
+  };
 
   if (!post) {
     return (
@@ -79,14 +101,28 @@ export default function PostDetail() {
 
           {/* 수정/삭제 버튼 */}
           <div className="flex justify-end gap-2 pt-6 border-t border-gray-200">
-            <button className="bg-yellow-50 hover:bg-yellow-100 text-yellow-800 font-bold py-2 px-4 rounded-lg shadow border border-yellow-50 transition-colors duration-200">
+            <button 
+              onClick={() => router.push(`/board/${postId}/edit`)}
+              className={`${getButtonClasses('edit')} py-2 px-4`} // colors.ts 사용, 크기만 조정
+            >
               수정 ✏️
             </button>
-            <button className="bg-red-50 hover:bg-red-100 text-red-800 font-bold py-2 px-4 rounded-lg shadow border border-red-50 transition-colors duration-200">
+            <button
+              onClick={() => setIsDeleteModalOpen(true)} 
+              className={`${getButtonClasses('delete')} py-2 px-4`} // colors.ts 사용, 크기만 조정
+            >
               삭제 🗑️
             </button>
           </div>
         </div>
+
+        {/* 삭제 확인 모달 */}
+        <DeleteConfirmModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          onConfirm={handleDelete}
+          title={post.title}
+        />
       </div>
     </div>
   );

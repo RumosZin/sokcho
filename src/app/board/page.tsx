@@ -69,7 +69,7 @@ export default function Board() {
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="px-3 py-2 rounded-lg bg-white hover:bg-blue-50 text-gray-800 font-bold shadow-lg border border-gray-200 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white"
+            className="px-3 py-2 rounded-lg bg-white hover:bg-blue-50 text-gray-800 font-bold shadow-lg border-gray-200 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white"
           >
             이전
           </button>
@@ -78,7 +78,7 @@ export default function Board() {
             <button
               key={pageNumber}
               onClick={() => handlePageChange(pageNumber)}
-              className={`px-3 py-2 rounded-lg font-bold shadow-lg border border-gray-200 transition-colors duration-200 ${
+              className={`px-3 py-2 rounded-lg font-bold shadow-lg border-gray-200 transition-colors duration-200 ${
                 currentPage === pageNumber
                   ? 'bg-blue-50 text-gray-800'
                   : 'bg-white hover:bg-blue-50 text-gray-800'
@@ -91,7 +91,7 @@ export default function Board() {
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="px-3 py-2 rounded-lg bg-white hover:bg-blue-50 text-gray-800 font-bold shadow-lg border border-gray-200 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white"
+            className="px-3 py-2 rounded-lg bg-white hover:bg-blue-50 text-gray-800 font-bold shadow-lg border-gray-200 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white"
           >
             다음
           </button>
