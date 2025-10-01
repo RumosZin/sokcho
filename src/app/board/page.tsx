@@ -34,12 +34,12 @@ export default function Board() {
       <div className="max-w-4xl mx-auto">
         {/* 헤더 */}
         <div className="flex justify-between items-center mb-8">
-		<Button href="/">
-			홈으로 🏠
-		</Button>
-		<Button href="/board/write">
-			글쓰기 ✍🏼
-		</Button>
+          <Button href="/">
+            홈으로 🏠
+          </Button>
+          <Button href="/board/write">
+            글쓰기 ✍🏼
+          </Button>
         </div>
 
         {/* 게시글 목록 */}
