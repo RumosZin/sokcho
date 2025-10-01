@@ -7,6 +7,22 @@ import { useState } from 'react';
 
 export default function Reservation() {
   const [selectedDate, setSelectedDate] = useState<string>('');
+  
+  // 년월 상태 추가
+  const today = new Date();
+  const [currentYear, setCurrentYear] = useState(today.getFullYear());
+  const [currentMonth, setCurrentMonth] = useState(today.getMonth());
+
+  // 년월 변경 핸들러 추가
+  const handleYearMonthChange = (year: number, month: number) => {
+    setCurrentYear(year);
+    setCurrentMonth(month);
+    setSelectedDate(''); // 년월 변경 시 선택된 날짜 초기화
+  };
+
+  const handleDateClick = (dateStr: string) => {
+    setSelectedDate(dateStr);
+  };
 
   // 임시 예약 데이터
   const reservations = [
@@ -29,14 +45,6 @@ export default function Reservation() {
       endTimeSlot: 'afternoon'
     }
   ];
-
-  const today = new Date();
-  const currentMonth = today.getMonth();
-  const currentYear = today.getFullYear();
-
-  const handleDateClick = (dateStr: string) => {
-    setSelectedDate(dateStr);
-  };
 
   // 특정 날짜에 예약이 있는지 확인
   const getReservationsForDate = (dateStr: string) => {
@@ -62,6 +70,7 @@ export default function Reservation() {
             year={currentYear}
             month={currentMonth}
             onDateClick={handleDateClick}
+            onYearMonthChange={handleYearMonthChange} // 추가
             mode="view"
             selectedDate={selectedDate}
             reservations={reservations}

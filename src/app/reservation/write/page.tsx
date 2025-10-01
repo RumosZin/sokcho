@@ -21,8 +21,16 @@ export default function ReservationWrite() {
   const router = useRouter();
 
   const today = new Date();
-  const currentMonth = today.getMonth();
-  const currentYear = today.getFullYear();
+  const [currentYear, setCurrentYear] = useState(today.getFullYear());
+  const [currentMonth, setCurrentMonth] = useState(today.getMonth());
+
+  // 년월 변경 핸들러 추가
+  const handleYearMonthChange = (year: number, month: number) => {
+    setCurrentYear(year);
+    setCurrentMonth(month);
+    setStartDate('');
+    setEndDate('');
+  };
 
   const handleDateClick = (dateStr: string) => {
     // 시작 날짜가 없거나, 클릭한 날짜가 시작 날짜보다 이전이면 시작 날짜로 설정
@@ -82,6 +90,7 @@ export default function ReservationWrite() {
               year={currentYear}
               month={currentMonth}
               onDateClick={handleDateClick}
+              onYearMonthChange={handleYearMonthChange} 
               mode="write"
               startDate={startDate}
               endDate={endDate}
