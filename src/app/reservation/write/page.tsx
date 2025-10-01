@@ -2,6 +2,7 @@
 'use client';
 import Button from '@/components/Button';
 import Calendar from '@/components/Calendar';
+import { TIME_SLOT_NAMES } from '@/constants/time';
 import { useState } from 'react';
 import { useToast } from '@/contexts/ToastContext';
 import { getButtonClasses } from '@/constants/colors';
@@ -59,11 +60,6 @@ export default function ReservationWrite() {
     // 예약 완료 후 예약 조회 페이지로 이동
     router.push('/reservation');
     showToast('예약이 완료되었습니다.', 'success');
-  };
-  const timeSlotNames = {
-    morning: '아침',
-    afternoon: '점심', 
-    evening: '저녁'
   };
 
   return (
@@ -127,7 +123,7 @@ export default function ReservationWrite() {
                             : 'bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-300'
                         }`}
                       >
-                        {timeSlotNames[slot]}
+                        {TIME_SLOT_NAMES[slot]}
                       </button>
                     ))}
                   </div>
@@ -152,7 +148,7 @@ export default function ReservationWrite() {
                             : 'bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-300'
                         }`}
                       >
-                        {timeSlotNames[slot]}
+                        {TIME_SLOT_NAMES[slot]}
                       </button>
                     ))}
                   </div>
@@ -177,10 +173,10 @@ export default function ReservationWrite() {
               {startDate && endDate && (
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <div className="text-sm space-y-1">
-                    <p><span className="font-medium">입장 ➡️ </span> {startDate} {timeSlotNames[startTimeSlot]}</p>
-                    <p><span className="font-medium">퇴장 ⬅️ </span> {endDate} {timeSlotNames[endTimeSlot]}</p>
-                    {guestName && <p><span className="font-medium">예약자:</span> {guestName}</p>}
-                    {comments && <p><span className="font-medium">기타사항:</span> {comments}</p>}
+                    <p><span className="font-medium">입장 ➡️ </span> {startDate} {TIME_SLOT_NAMES[startTimeSlot]}</p>
+                    <p><span className="font-medium">퇴장 ⬅️ </span> {endDate} {TIME_SLOT_NAMES[endTimeSlot]}</p>
+                    {guestName && <p><span className="font-medium">예약자 :</span> {guestName}</p>}
+                    {comments && <p><span className="font-medium">기타사항 :</span> {comments}</p>}
                   </div>
                 </div>
               )}

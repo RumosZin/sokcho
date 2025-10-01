@@ -2,6 +2,7 @@
 'use client';
 import Button from '@/components/Button';
 import Calendar from '@/components/Calendar';
+import { TIME_SLOT_NAMES } from '@/constants/time';
 import { useState } from 'react';
 
 export default function Reservation() {
@@ -45,7 +46,6 @@ export default function Reservation() {
   };
 
   const selectedDateReservations = selectedDate ? getReservationsForDate(selectedDate) : [];
-  const timeSlotNames = { morning: '아침', afternoon: '점심', evening: '저녁' };
 
   return (
     <div className="min-h-screen p-8">
@@ -85,11 +85,11 @@ export default function Reservation() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                       <div className="flex items-center">
                         <span className="font-medium w-16">입장 ➡️</span>
-                        <span>{reservation.startDate} {timeSlotNames[reservation.startTimeSlot]}</span>
+                        <span>{reservation.startDate} {TIME_SLOT_NAMES[reservation.startTimeSlot]}</span>
                       </div>
                       <div className="flex items-center">
                         <span className="font-medium w-16">퇴장 ⬅️</span>
-                        <span>{reservation.endDate} {timeSlotNames[reservation.endTimeSlot]}</span>
+                        <span>{reservation.endDate} {TIME_SLOT_NAMES[reservation.endTimeSlot]}</span>
                       </div>
                     </div>
                     {reservation.comments && (
