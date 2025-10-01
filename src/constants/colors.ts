@@ -22,19 +22,19 @@ export const BUTTON_COLORS = {
     bg: 'bg-green-50',
     hover: 'hover:bg-green-100',
     text: 'text-green-800',
-    border: 'border-green-200',
+    border: 'border-green-50',
   },
   error: {
     bg: 'bg-red-50',
     hover: 'hover:bg-red-100',
     text: 'text-red-800',
-    border: 'border-red-200',
+    border: 'border-red-50',
   },
   info: {
     bg: 'bg-blue-50',
     hover: 'hover:bg-blue-100',
     text: 'text-blue-800',
-    border: 'border-blue-200',
+    border: 'border-blue-50',
   }
 } as const;
 
